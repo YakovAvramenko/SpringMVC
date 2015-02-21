@@ -2,28 +2,43 @@ package com.mkyong.common.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import com.mkyong.common.entity.AbstractEntity;
+
+@Entity
+@Table(name = "USER_ACCOUNT")
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserAccount implements Serializable {
+public class UserAccount extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 321943595813669083L;
 
-	private String userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long userId;
 	private String userName;
 	private String password;
 
+	@Embedded
 	private Address address;
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(Long userIds) {
+		this.userId = userIds;
 	}
 
 	public String getUserName() {
