@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DataService {
-  Map<String, String> model = new HashMap<String, String>();;
-
+  Map<String, String> model = new HashMap<String, String>();
   @PostConstruct
   private void init() {
     Random rand = new Random();

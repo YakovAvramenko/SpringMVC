@@ -12,72 +12,76 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.mkyong.common.model.Customer;
+import com.mkyong.common.model.ChatCustomer;
 import com.mkyong.common.validator.CustomerValidator;
 
 @Controller
 @RequestMapping("/customer")
+@SessionAttributes("customer")
 public class CustomerController {
-  // extends SimpleFormController
+	// extends SimpleFormController
 
-  @Autowired
-  private CustomerValidator validator;
-  
-  @RequestMapping(method = RequestMethod.POST)
-  public String save(@ModelAttribute("customer") Customer customer,
-                        BindingResult result,
-                        SessionStatus status) {
-    System.out.println("###customer = " + customer);
-    validator.validate(customer, result);
+	@Autowired
+	private CustomerValidator validator;
 
-    if (result.hasErrors()) {
-      System.out.println("###ooops");
-      return "saveOrUpdateCustomer";
-    }
-    
-    status.setComplete();
+	@Autowired
+	private ChatCustomer customer;
 
-    return "customerInfo";
-  }
+	@RequestMapping(method = RequestMethod.POST)
+	public String save(@ModelAttribute("customer") ChatCustomer customerIn,
+			BindingResult result, SessionStatus status) {
+		System.out.println("customer = " + customer);
+		customer = customerIn;
+		validator.validate(customer, result);
 
-  @ModelAttribute("javaSkillsList")
-  public Map<String, String> populateJavaSkillList() {
+		if (result.hasErrors()) {
+			return "saveOrUpdateCustomer";
+		}
 
-    // Data referencing for java skills list box
-    Map<String, String> javaSkill = new LinkedHashMap<String, String>();
-    javaSkill.put("Hibernate", "Hibernate");
-    javaSkill.put("Spring", "Spring");
-    javaSkill.put("Apache Wicket", "Apache Wicket");
-    javaSkill.put("Struts", "Struts");
+		status.setComplete();
+		System.out.println("customer = " + customer);
 
-    return javaSkill;
-  }
+		return "customerInfo";
+	}
 
-  @ModelAttribute("webFrameworkList")
-  public List<String> populateWebFrameworkList() {
+	@ModelAttribute("javaSkillsList")
+	public Map<String, String> populateJavaSkillList() {
 
-    // Data referencing for web framework checkboxes
-    List<String> webFrameworkList = new ArrayList<String>();
-    webFrameworkList.add("Spring MVC");
-    webFrameworkList.add("Struts 1");
-    webFrameworkList.add("Struts 2");
-    webFrameworkList.add("JSF");
-    webFrameworkList.add("Apache Wicket");
+		// Data referencing for java skills list box
+		Map<String, String> javaSkill = new LinkedHashMap<String, String>();
+		javaSkill.put("Hibernate", "Hibernate");
+		javaSkill.put("Spring", "Spring");
+		javaSkill.put("Apache Wicket", "Apache Wicket");
+		javaSkill.put("Struts", "Struts");
 
-    return webFrameworkList;
-  }
+		return javaSkill;
+	}
 
-  @RequestMapping(method = RequestMethod.GET)
-  public String formBackingObject(ModelMap request) throws Exception {
-    System.out.println("### formBackingObject");
+	@ModelAttribute("webFrameworkList")
+	public List<String> populateWebFrameworkList() {
 
-    Customer customer = new Customer();
-    customer.setJavaSkills("Hiberante4");
-    customer.setSecretValue("sevret");
-    request.addAttribute("customer", customer);
-    return "saveOrUpdateCustomer";
-  }
+		// Data referencing for web framework checkboxes
+		List<String> webFrameworkList = new ArrayList<String>();
+		webFrameworkList.add("Spring MVC");
+		webFrameworkList.add("Struts 1");
+		webFrameworkList.add("Struts 2");
+		webFrameworkList.add("JSF");
+		webFrameworkList.add("Apache Wicket");
+
+		return webFrameworkList;
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String formBackingObject(ModelMap request) throws Exception {
+		System.out.println("### formBackingObject");
+
+		customer.setJavaSkills("Hiberante4");
+		customer.setSecretValue("sevret");
+		request.addAttribute("customer", customer);
+		return "saveOrUpdateCustomer";
+	}
 
 }

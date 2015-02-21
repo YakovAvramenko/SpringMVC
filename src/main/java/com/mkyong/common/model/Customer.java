@@ -1,127 +1,54 @@
 package com.mkyong.common.model;
 
-import java.util.Arrays;
+import java.io.Serializable;
+import java.util.Map;
 
-public class Customer {// textbox
-  String userName;
+@Deprecated
+public interface Customer extends Serializable {
 
-  // textarea
-  String address;
+	public String getUserName();
 
-  // password
-  String password;
-  String confirmPassword;
+	public void setUserName(String userName);
 
-  // checkbox
-  boolean receiveNewsletter;
-  String[] favFramework;
+	public String getAddress();
 
-  // radio button
-  String favNumber;
-  String sex;
+	public void setAddress(String address);
 
-  // dropdown box
-  String country;
-  String javaSkills;
+	public String getPassword();
 
-  // hidden value
-  String secretValue;
+	public void setPassword(String password);
 
-  public String getUserName() {
-    return userName;
-  }
+	public String getConfirmPassword();
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+	public void setConfirmPassword(String confirmPassword);
 
-  public String getAddress() {
-    return address;
-  }
+	public boolean isReceiveNewsletter();
 
-  public void setAddress(String address) {
-    this.address = address;
-  }
+	public void setReceiveNewsletter(boolean receiveNewsletter);
 
-  public String getPassword() {
-    return password;
-  }
+	public String[] getFavFramework();
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public void setFavFramework(String[] favFramework);
 
-  public String getConfirmPassword() {
-    return confirmPassword;
-  }
+	public String getFavNumber();
 
-  public void setConfirmPassword(String confirmPassword) {
-    this.confirmPassword = confirmPassword;
-  }
+	public void setFavNumber(String favNumber);
 
-  public boolean isReceiveNewsletter() {
-    return receiveNewsletter;
-  }
+	public String getSex();
 
-  public void setReceiveNewsletter(boolean receiveNewsletter) {
-    this.receiveNewsletter = receiveNewsletter;
-  }
+	public void setSex(String sex);
 
-  public String[] getFavFramework() {
-    return favFramework;
-  }
+	public String getCountry();
 
-  public void setFavFramework(String[] favFramework) {
-    this.favFramework = favFramework;
-  }
+	public void setCountry(String country);
 
-  public String getFavNumber() {
-    return favNumber;
-  }
+	public String getJavaSkills();
 
-  public void setFavNumber(String favNumber) {
-    this.favNumber = favNumber;
-  }
+	public void setJavaSkills(String javaSkills);
 
-  public String getSex() {
-    return sex;
-  }
+	public String getSecretValue();
 
-  public void setSex(String sex) {
-    this.sex = sex;
-  }
+	public void setSecretValue(String secretValue);
 
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public String getJavaSkills() {
-    return javaSkills;
-  }
-
-  public void setJavaSkills(String javaSkills) {
-    this.javaSkills = javaSkills;
-  }
-
-  public String getSecretValue() {
-    return secretValue;
-  }
-
-  public void setSecretValue(String secretValue) {
-    this.secretValue = secretValue;
-  }
-
-  @Override
-  public String toString() {
-    return "Customer [userName=" + userName + ", address=" + address + ", password=" + password
-        + ", confirmPassword=" + confirmPassword + ", receiveNewsletter=" + receiveNewsletter
-        + ", favFramework=" + Arrays.toString(favFramework) + ", favNumber=" + favNumber + ", sex="
-        + sex + ", country=" + country + ", javaSkills=" + javaSkills + ", secretValue="
-        + secretValue + "]";
-  }
-
+	public Map toMap();
 }

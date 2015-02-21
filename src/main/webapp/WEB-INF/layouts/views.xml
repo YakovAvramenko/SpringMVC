@@ -4,24 +4,26 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-  <definition name="DefaultTemplate" template="/WEB-INF/pages/general.jsp">
-    <put-attribute name="title" value="Home" />
-    <put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
-    <put-attribute name="menu" value="/WEB-INF/templates/menu.jsp" />
-    <put-attribute name="body" value="" />
-    <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
-  </definition>
+	<definition name="login" template="/WEB-INF/pages/login.jsp">
+	</definition>
 
-  <definition name="home" extends="DefaultTemplate">
-    <put-attribute name="body" value="/WEB-INF/pages/hello.jsp" />
-  </definition>
-  
-   <definition name="saveOrUpdateCustomer" extends="DefaultTemplate">
-    <put-attribute name="body" value="/WEB-INF/pages/edit-customer.jsp" />
-  </definition>
-  
-   <definition name="customerInfo" extends="DefaultTemplate">
-    <put-attribute name="body" value="/WEB-INF/pages/customer-info.jsp" />
-  </definition>
+	<definition name="register" template="/WEB-INF/pages/register.jsp">
+	</definition>
+
+	<definition name="DefaultTemplate" template="/WEB-INF/pages/general.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/templates/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+	</definition>
+
+	<definition name="home" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/pages/home.jsp" />
+	</definition>
+
+	<definition name="userInfo" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/pages/user-info.jsp" />
+	</definition>
 
 </tiles-definitions>

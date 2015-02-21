@@ -5,14 +5,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.mkyong.common.model.Customer;
+import com.mkyong.common.model.ChatCustomer;
 
 @Component("customerValidator")
 public class CustomerValidator implements Validator {
 
   @Override
   public boolean supports(Class< ? > arg0) {
-    return Customer.class.isAssignableFrom(arg0);
+    return ChatCustomer.class.isAssignableFrom(arg0);
   }
 
   @Override
@@ -32,7 +32,7 @@ public class CustomerValidator implements Validator {
 
     ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sex", "required.sex", defReq);
 
-    Customer cust = (Customer) target;
+    ChatCustomer cust = (ChatCustomer) target;
 
     if (!(cust.getPassword().equals(cust.getConfirmPassword()))) {
       errors.rejectValue("password", "notmatch.password");
